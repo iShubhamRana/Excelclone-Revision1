@@ -1,0 +1,77 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    padding: 0px;
+    margin: 0px
+}
+
+/* PAGE ACTIONS - --------------------------------------------------------------------------- */
+.page-actions-cont{
+    height:3rem;
+    background-color: #0F9D58;
+    display: flex;
+    align-items: flex-end;
+    padding-left: 1rem;
+}
+.page-action { 
+    margin: 0.5rem;
+    color: #f1f2f6;
+}
+
+/* CELL ACTIONS  ------------------------------------------------------------------------ */
+.cellprops-actions-container{
+    height: 3rem;
+    background-color: lightsalmon;
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+}
+.cellprops-actions-container> *{
+    display: inline-block;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+.cellprops-actions-container>select{
+    padding: 0.2rem;
+    outline: none;
+}
+
+.formula-actions-container{
+    height:3rem;
+    background-color: lightblue;
+    padding-left: 1rem;
+}
+
+.sheets-actions-container{
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+.sheets-folder-container{
+    height: 80%;
+    width: calc(100vw - 2rem);
+    display:flex;
+    align-items: center;
+    gap:1rem;
+}
+
+.sheet-add-icon{
+    width: 2vw;
+}
+
+.sheet-folder{
+    text-decoration: underline;
+    font-weight: bold;
+    text-decoration-thickness: 3px;
+
+}
+
+.grid-container{
+    height: calc(100vh - 3rem - 3rem - 3rem - 3rem);
+    background-color: red;
+    padding-left: 1rem;
+}
