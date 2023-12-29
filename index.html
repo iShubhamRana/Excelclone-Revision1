@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excel</title>
+    <title>MyExcel</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
 
@@ -27,7 +27,7 @@
         </span>
 
         <select class="font-family-prop"">
-            <option value=" monospace"">Monospace</option>
+            <option default value=" monospace"">Monospace</option>
             <option value="sanse-serif">Sans-Serif</option>
             <option value="fantasy"> Fantasy</option>
             <option value="cursive">Cursive</option>
@@ -66,8 +66,27 @@
 
 
     </div>
-    <div class="formula-actions-container"></div>
-    <div class="grid-container"></div>
+
+    <div class="formula-actions-container">
+
+        <input type="text" readonly class="address-bar">
+        <img class="formula-icon" src="./images/icons8-formula-50.png" />
+        <input type="text" class="formula-bar">
+
+
+    </div>
+    <div class="grid-container">
+
+        <div class="top-left-dummy">
+
+        </div>
+        <div class="address-column-container"></div>
+        <div class="cells-container">
+            <div class="address-row-container"></div>
+
+        </div>
+
+    </div>
     <div class="sheets-actions-container">
 
 
@@ -88,7 +107,7 @@
     </div>
 
 
-    <script src=""></script>
+    <script src="index.js"></script>
 </body>
 
 </html>

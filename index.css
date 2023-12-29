@@ -1,77 +1,168 @@
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
-body{
-    padding: 0px;
-    margin: 0px
+body {
+  padding: 0px;
+  margin: 0px;
 }
 
 /* PAGE ACTIONS - --------------------------------------------------------------------------- */
-.page-actions-cont{
-    height:3rem;
-    background-color: #0F9D58;
-    display: flex;
-    align-items: flex-end;
-    padding-left: 1rem;
+.page-actions-cont {
+  height: 3rem;
+  background-color: #0f9d58;
+  display: flex;
+  align-items: flex-end;
+  padding-left: 1rem;
 }
-.page-action { 
-    margin: 0.5rem;
-    color: #f1f2f6;
+.page-action {
+  margin-right: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #f1f2f6;
 }
 
 /* CELL ACTIONS  ------------------------------------------------------------------------ */
-.cellprops-actions-container{
-    height: 3rem;
-    background-color: lightsalmon;
-    display: flex;
-    align-items: center;
-    padding-left: 1rem;
+.cellprops-actions-container {
+  height: 3rem;
+  background-color: #ecf0f1;
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
 }
-.cellprops-actions-container> *{
-    display: inline-block;
-    margin-right: 1rem;
-    cursor: pointer;
+.cellprops-actions-container > * {
+  display: inline-block;
+  margin-right: 1rem;
+  cursor: pointer;
 }
-.cellprops-actions-container>select{
-    padding: 0.2rem;
-    outline: none;
+.cellprops-actions-container > select {
+  padding: 0.2rem;
+  outline: none;
 }
-
-.formula-actions-container{
-    height:3rem;
-    background-color: lightblue;
-    padding-left: 1rem;
+/* FORMULA ACTIONS -------------------------------------------------------------------------------------- */
+.formula-actions-container {
+  height: 2.5rem;
+  background-color: lightblue;
+  padding-left: 1rem;
+  display: flex;
+  align-items: center;
+  background-color: #ecf0f1;
 }
-
-.sheets-actions-container{
-    height: 3rem;
-    display: flex;
-    align-items: center;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+.formula-actions-container > * {
+  display: inline-block;
+  margin-right: 1rem;
 }
-.sheets-folder-container{
-    height: 80%;
-    width: calc(100vw - 2rem);
-    display:flex;
-    align-items: center;
-    gap:1rem;
+.formula-actions-container > input {
+  border: none;
+  outline: none;
+  height: 70%;
 }
 
-.sheet-add-icon{
-    width: 2vw;
+.formula-icon {
+  height: 1.5rem;
+  width: 1.5rem;
 }
 
-.sheet-folder{
-    text-decoration: underline;
-    font-weight: bold;
-    text-decoration-thickness: 3px;
-
+.address-bar {
+  width: 5rem;
+  text-align: center;
+}
+.formula-bar {
+  width: calc(100vw - 5rem - 1rem - 1rem);
 }
 
-.grid-container{
-    height: calc(100vh - 3rem - 3rem - 3rem - 3rem);
-    background-color: red;
-    padding-left: 1rem;
+.sheets-actions-container {
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 0.5rem;
+}
+.sheets-folder-container {
+  height: 80%;
+  width: calc(100vw - 2rem);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sheet-add-icon {
+  width: 2vw;
+}
+
+.sheet-folder {
+  text-decoration: underline;
+  font-weight: bold;
+  text-decoration-thickness: 3px;
+  font-size: 0.9rem;
+}
+
+.grid-container {
+  position: relative;
+  height: calc(100vh - 3rem - 3rem - 3rem - 2.5rem);
+  /* background-color: ; */
+  overflow: scroll;
+  background-color: #ecf0f1;
+}
+
+.top-left-dummy {
+  height: 2rem;
+  width: 2rem;
+  background-color: #747d8c;
+  position: sticky;
+  left: 0px;
+  top: 0px;
+  z-index: 5;
+}
+
+.address-column-container {
+  width: 2rem;
+  position: sticky;
+  left: 0px;
+}
+
+.cells-container {
+  position: absolute;
+  top: 0px;
+  left: 2rem;
+}
+
+.address-row-container {
+  display: flex;
+  position: sticky;
+  top:0px;
+  left: 2rem;
+}
+
+.address-column {
+  height: 2rem;
+  width: 2rem;
+  text-align: center;
+  border: 1px solid #dfe4ea;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.address-row {
+  height: 2rem;
+  width: 5rem;
+  border: 1px solid #dfe4ea;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-cell {
+  height: 2rem;
+  width: 5rem;
+  border: 1px solid #dfe4ea;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+}
+
+.row-cell-container {
+  display: flex;
 }
