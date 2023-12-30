@@ -38,6 +38,20 @@ body {
   padding: 0.2rem;
   outline: none;
 }
+
+.color-prop{
+  position: relative;
+}
+.color-prop > input { 
+  position: absolute;
+  opacity: 0;
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+
 /* FORMULA ACTIONS -------------------------------------------------------------------------------------- */
 .formula-actions-container {
   height: 2.5rem;
@@ -118,6 +132,7 @@ body {
   width: 2rem;
   position: sticky;
   left: 0px;
+  z-index: 4;
 }
 
 .cells-container {
@@ -129,8 +144,9 @@ body {
 .address-row-container {
   display: flex;
   position: sticky;
-  top:0px;
+  top: 0px;
   left: 2rem;
+  z-index: 4;
 }
 
 .address-column {

@@ -31,17 +31,24 @@ for (let i = 0; i < rows; i++) {
     let cell = document.createElement("div");
     cell.setAttribute("class", "grid-cell");
     cell.setAttribute("contenteditable", true);
+    cell.setAttribute("rowId", i);
+    cell.setAttribute("columnId", j);
+    cell.setAttribute("spellcheck", false);
     rowContainer.appendChild(cell);
     addCellAddressEventListener(cell, i, j);
   }
   cellsContainer.appendChild(rowContainer);
 }
 
-
+//update address bar on click
 function addCellAddressEventListener(cell, row, col) {
   cell.addEventListener("click", function updateAddressbar(e) {
-    row = row+1;
-    col = String.fromCharCode(col + 65);
-    addressBar.value = col+row;
+    addressBar.value = String.fromCharCode(col + 65)  + (row+1);
   });
 }
+
+
+
+//ADD CLICK FOR FIRST CELL
+let firstCell = document.querySelector('.grid-cell');
+firstCell.click();
