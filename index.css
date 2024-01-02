@@ -15,11 +15,13 @@ body {
   align-items: flex-end;
   padding-left: 1rem;
 }
+
 .page-action {
   margin-right: 1.2rem;
   margin-bottom: 0.5rem;
   color: #f1f2f6;
 }
+
 
 /* CELL ACTIONS  ------------------------------------------------------------------------ */
 .cellprops-actions-container {
@@ -29,20 +31,23 @@ body {
   align-items: center;
   padding-left: 1rem;
 }
-.cellprops-actions-container > * {
+
+.cellprops-actions-container>* {
   display: inline-block;
   margin-right: 1rem;
-  cursor: pointer;
+  cursor: pointer
 }
-.cellprops-actions-container > select {
+
+.cellprops-actions-container>select {
   padding: 0.2rem;
   outline: none;
 }
 
-.color-prop{
+.color-prop {
   position: relative;
 }
-.color-prop > input { 
+
+.color-prop>input {
   position: absolute;
   opacity: 0;
   left: 0px;
@@ -61,11 +66,13 @@ body {
   align-items: center;
   background-color: #ecf0f1;
 }
-.formula-actions-container > * {
+
+.formula-actions-container>* {
   display: inline-block;
   margin-right: 1rem;
 }
-.formula-actions-container > input {
+
+.formula-actions-container>input {
   border: none;
   outline: none;
   height: 70%;
@@ -80,6 +87,7 @@ body {
   width: 5rem;
   text-align: center;
 }
+
 .formula-bar {
   width: calc(100vw - 5rem - 1rem - 1rem);
 }
@@ -91,6 +99,7 @@ body {
   padding-left: 1rem;
   padding-right: 0.5rem;
 }
+
 .sheets-folder-container {
   height: 80%;
   width: calc(100vw - 2rem);
@@ -135,6 +144,7 @@ body {
   z-index: 4;
 }
 
+
 .cells-container {
   position: absolute;
   top: 0px;
@@ -173,9 +183,6 @@ body {
   height: 2rem;
   width: 5rem;
   border: 1px solid #dfe4ea;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   outline: none;
 }
 

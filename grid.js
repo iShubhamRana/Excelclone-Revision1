@@ -43,7 +43,7 @@ for (let i = 0; i < rows; i++) {
 //update address bar on click
 function addCellAddressEventListener(cell, row, col) {
   cell.addEventListener("click", function updateAddressbar(e) {
-    addressBar.value = String.fromCharCode(col + 65)  + (row+1);
+    addressBar.value = String.fromCharCode(col + 65) + (row + 1);
   });
 }
 
