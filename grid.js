@@ -6,7 +6,6 @@ let addressColumnContainer = document.querySelector(
 );
 
 let addressBar = document.querySelector(".address-bar");
-
 for (let i = 0; i < rows; i++) {
   const addressColumn = document.createElement("div");
   addressColumn.innerText = i + 1;

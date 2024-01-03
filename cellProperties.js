@@ -7,11 +7,13 @@ const DEFAULT_CELL_PROPS = {
   fontSize: "14",
   fontColor: "#000000",
   bgColor: "#ecf0f1",
+  value: "",
+  formula: ""
 };
 
 const ACTIVE_COLOR_PROP = "#d1d8e0"
 const INACTIVE_COLOR_PROP = "#ecf0f1"
-let sheetDB = Array.from(Array(rows), (row) => {
+let sheetDB = Array.from(Array(rows), () => {
   return Array.from(Array(columns), () => ({ ...DEFAULT_CELL_PROPS }));
 });
 
@@ -152,7 +154,6 @@ function addListenerToAttachCellProperties(cell) {
 
     fontSize.value = cellProp.fontSize;
     fontFamily.value = cellProp.fontFamily;
-    console.log(fontFamily, cellProp.fontFamily)
     fontColor.value = cellProp.fontColor;
     bgColor.value = cellProp.bgColor;
 
@@ -177,8 +178,8 @@ function addListenerToAttachCellProperties(cell) {
     }
 
   })
-
 }
+
 
 
 
