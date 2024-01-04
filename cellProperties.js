@@ -1,20 +1,30 @@
-const DEFAULT_CELL_PROPS = {
-  bold: false,
-  italic: false,
-  underline: false,
-  alignment: "left",
-  fontFamily: "monospace",
-  fontSize: "14",
-  fontColor: "#000000",
-  bgColor: "#ecf0f1",
-  value: "",
-  formula: ""
-};
+function getDefaultProps() {
+
+  const DEFAULT_CELL_PROPS = {
+    bold: false,
+    italic: false,
+    underline: false,
+    alignment: "left",
+    fontFamily: "monospace",
+    fontSize: "14",
+    fontColor: "#000000",
+    bgColor: "#ecf0f1",
+    value: "",
+    formula: "",
+    //AS WE CHANGE THE VALUE INSIDE A CELL, WE WANT ALL THE CELL WHO ARE USING THAT CELL AS A VALUE TO REFLECT THAT CHANGE AND THEREFORE
+    //WE NEED A DEPENDENCY ARRAY TO BE MAINTAINED.
+    children: []
+  };
+  return DEFAULT_CELL_PROPS;
+}
+
 
 const ACTIVE_COLOR_PROP = "#d1d8e0"
 const INACTIVE_COLOR_PROP = "#ecf0f1"
 let sheetDB = Array.from(Array(rows), () => {
-  return Array.from(Array(columns), () => ({ ...DEFAULT_CELL_PROPS }));
+  return Array.from(Array(columns), () => {
+    return getDefaultProps();
+  });
 });
 
 
