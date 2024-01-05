@@ -1,4 +1,5 @@
 /*/
+ * 
  *
  * 1. Add dependency to the cell when adding a formula
  * 2. Remove the previous dependencies, once we have a new formula
@@ -35,11 +36,21 @@ formulaBar.addEventListener('keydown', function(e) {
   let inputFormula = formulaBar.value;
   if (e.key == "Enter" && inputFormula) {
     let evaluatedValue = evaluateFormula(formulaBar.value);
-
     const [cell, cellProp] = activeCell(addressBar.value);
     const previousFormula = cellProp.formula;
     //remove the dependies due to previous formula
     if (previousFormula !== inputFormula) removeChildFromParent(previousFormula);
+
+    addChildToGraphComponent(inputFormula, addressBar.value);
+
+    //CHECK IF A CYCLE OR NOT , IF YES DONT PROCESS FURTHER
+    let isCyclic = isGraphCyclic();
+    if (isCyclic) {
+      alert("Your formula is cyclic");
+      removeChildFromGraphComponent(inputFormula, addressBar.value);
+      return;
+    }
+
     //update properties in cellUI
     setCellUIAndCellProp(evaluatedValue, inputFormula, addressBar.value);
     //update the dpendency array for each cell 
@@ -78,6 +89,34 @@ function updateChildrenCells(parentAddress) {
 
     //SINCE THE CURRENT CELL UPDATED, ALL THE VALUES IN THE CHILDREN WILL UPDATE
     updateChildrenCells(childAddress);
+  }
+}
+
+
+//THIS FUNCTION ADDS THE CHILDREN TO GRAPH TO CHECK IF A CYLCLE IS PRESENT OR NOT
+function addChildToGraphComponent(formula, address) {
+  let [rowId, columnId] = decodeAddress(address);
+  let encodedFormula = formula.split(' ');
+  for (let i = 0; i < encodedFormula.length; i++) {
+    let asciiValue = encodedFormula[i].charCodeAt(0);
+    if (asciiValue >= 65 && asciiValue <= 90) {
+      let [parentRowId, parentColumnId] = decodeAddress(encodedFormula[i]);
+      graphComponent[parentRowId][parentColumnId].push([rowId, columnId]);
+    }
+  }
+}
+
+
+//THIS FUNCTION REMOVES THE CHILDREN ADDED , IF THAT CAUSE A CYCLIC GRAPH
+function removeChildFromGraphComponent(inputFormula, address) {
+  let encodedFormula = inputFormula.split(' ');
+  for (let i = 0; i < encodedFormula.length; i++) {
+    let asciiValue = encodedFormula[i].charCodeAt(0);
+    if (asciiValue >= 65 && asciiValue <= 90) {
+      let [parentRowId, parentColumnId] = decodeAddress(encodedFormula[i]);
+      //removes the last added child , as it would be the one who had created 
+      graphComponent[parentRowId][parentColumnId].pop();
+    }
   }
 }
 
