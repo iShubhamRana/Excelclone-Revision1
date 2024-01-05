@@ -7,9 +7,9 @@ function getDefaultProps() {
     alignment: "left",
     fontFamily: "monospace",
     fontSize: "14",
-    fontColor: "#000000",
     bgColor: "#ecf0f1",
     value: "",
+    fontColor: "#000000",
     formula: "",
     //AS WE CHANGE THE VALUE INSIDE A CELL, WE WANT ALL THE CELL WHO ARE USING THAT CELL AS A VALUE TO REFLECT THAT CHANGE AND THEREFORE
     //WE NEED A DEPENDENCY ARRAY TO BE MAINTAINED.
@@ -187,6 +187,9 @@ function addListenerToAttachCellProperties(cell) {
 
     }
 
+    const formulaBar = document.querySelector('.formula-bar')
+    formulaBar.value = cellProp.formula;
+    cell.value = cellProp.value;
   })
 }
 

@@ -13,9 +13,19 @@ for (let i = 0; i < rows; i++) {
     cell.addEventListener('blur', function(e) {
       let address = addressBar.value;
       let [cell, cellProp] = activeCell(address);
-      let data = cell.innerText;
-      cellProp.value = data;
+      let enteredData = cell.innerText;
+      if (enteredData == cellProp.value) return;
+
+      cellProp.value = enteredData;
+      //ON UPDATIONG , WE MAY NEED TO UPDATE THE CHILDREN WHO ARE USING IT AS AN FORMULA
+      //1. remove foruma
+      //2. remove dependency due to previous formulas
+      //3. update children
+      removeChildFromParent(cellProp.formula);
+      cellProp.formula = '';
+      updateChildrenCells(address);
     })
+
   }
 }
 
@@ -28,13 +38,15 @@ formulaBar.addEventListener('keydown', function(e) {
 
     const [cell, cellProp] = activeCell(addressBar.value);
     const previousFormula = cellProp.formula;
+    //remove the dependies due to previous formula
     if (previousFormula !== inputFormula) removeChildFromParent(previousFormula);
-
     //update properties in cellUI
-    setCellUIAndCellProp(evaluatedValue, inputFormula);
+    setCellUIAndCellProp(evaluatedValue, inputFormula, addressBar.value);
     //update the dpendency array for each cell 
     addChildToParent(inputFormula);
-    console.log(sheetDB);
+
+    //update children cells
+    updateChildrenCells(addressBar.value);
   }
 })
 
@@ -43,9 +55,9 @@ function addChildToParent(formula) {
   let encodedFormula = formula.split(' ');
   let childAddress = addressBar.value;
   for (let i = 0; i < encodedFormula.length; i++) {
+    const asciiValue = encodedFormula[i].charCodeAt(0);
     if (asciiValue >= 65 && asciiValue <= 90) {
       let [ParentCell, ParentCellProp] = activeCell(encodedFormula[i]);
-      let asciiValue = encodedFormula[i].charCodeAt(0);
       ParentCellProp.children.push(childAddress);
     }
   }
@@ -60,14 +72,13 @@ function updateChildrenCells(parentAddress) {
   for (let i in children) {
     let childAddress = children[i];
     let [childCell, childCellProp] = activeCell(children[i]);
-    let formula = childCellProp.formula;
-    let value = evaluateFormula(formula);
+    let childFormula = childCellProp.formula;
+    let evaluatedValue = evaluateFormula(childFormula);
+    setCellUIAndCellProp(evaluatedValue, childFormula, childAddress);
 
-
+    //SINCE THE CURRENT CELL UPDATED, ALL THE VALUES IN THE CHILDREN WILL UPDATE
+    updateChildrenCells(childAddress);
   }
-
-
-
 }
 
 //THIS FUNCTION REMOVES THE DEPENDENCY ELEMENTS ADDED DUE TO THE PREVIOUS FORMULA
@@ -75,7 +86,7 @@ function removeChildFromParent(formula) {
   //old formula is needed
   let encodedFormula = formula.split(' ');
   let childAddress = addressBar.value;
-  for (let i = 0; i < encodedFormula[i].length; i++) {
+  for (let i = 0; i < encodedFormula.length; i++) {
     let asciiValue = encodedFormula[i].charCodeAt(0);
     if (asciiValue >= 65 && asciiValue <= 90) {
       let [ParentCell, ParentCellProp] = activeCell(encodedFormula[i]);
@@ -104,12 +115,21 @@ function evaluateFormula(formula) {
 }
 
 //UPDATES THE CELL WHEN THE FORMULA IS ENTERED
-function setCellUIAndCellProp(evaluatedValue, formula) {
-  let address = addressBar.value;
+function setCellUIAndCellProp(evaluatedValue, formula, address) {
   let [cell, cellProp] = activeCell(address);
-
   cell.innerText = evaluatedValue;
   cellProp.value = evaluatedValue;
   cellProp.formula = formula;
-
 }
+
+
+
+
+
+
+
+
+//ADD THE CASE WHERE IF WE CHANGE , THE VALUE OF A CELL , THEN : 
+//1. WE NO MORE NEED FORMULA FOR THAT CELL
+//2. REMOVE THE PARENT CHILD RELATIONSHIP WE HAVE DUE TO THE EXISITING FORMULA.
+//3. UPDATE CHILDREN ACCORDING TO NEW VALUE.
